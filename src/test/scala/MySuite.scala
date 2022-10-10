@@ -1,7 +1,7 @@
 import parsing.AST.{FunctionCall, Identifier}
 import parsing.parsers.SparkleParser
 import munit.Clue.generate
-import.scala.util.parsing.combinator.Parsers._
+import.scala.util.parsing.combinator.Parsers.
 // For more information on writing tests, see
 // https://scalameta.org/munit/docs/getting-started.html
 class MySuite extends munit.FunSuite {
