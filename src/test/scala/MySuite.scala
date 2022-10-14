@@ -1,14 +1,26 @@
-import parsing.AST.{FunctionCall, Identifier}
+import parsing.AST.{FunctionCall, Identifier, Stmt}
 import parsing.parsers.SparkleParser
+import scala.util.parsing.combinator._
 import munit.Clue.generate
-import.scala.util.parsing.combinator.Parsers.
 // For more information on writing tests, see
 // https://scalameta.org/munit/docs/getting-started.html
 class MySuite extends munit.FunSuite {
   test("Testing function calls") {
-    val parser = SparkleParser();
-    parser.parse(parser.body, "hello()") match {
-      case ParserResult.Success(obtained, _) => {
+    object TestParser extends SparkleParser {
+      def main(str: String): Either[List[Stmt], String] = {
+        parse(stmt, str) match {
+          case Success(obtained, _) => {
+            obtained match {
+              case Some(x) => Left(List(x))
+              case None => Right("Error")
+            }
+          }
+          case _ => Right("Error");
+        }
+      }
+    }
+    TestParser.main("hello()") match {
+      case Left(obtained) => {
         val expected = List(FunctionCall(Identifier ("hello"), List()));
         assertEquals(obtained, expected)
       }
