@@ -5,7 +5,7 @@ import munit.Clue.generate
 // For more information on writing tests, see
 // https://scalameta.org/munit/docs/getting-started.html
 class MySuite extends munit.FunSuite {
-  test("Testing function calls") {
+  test("Testing the parsign of function calls") {
     object TestParser extends SparkleParser {
       def main(str: String): Either[List[Stmt], String] = {
         parse(stmt, str) match {
